@@ -1,9 +1,11 @@
 import React from "react";
+import { connect } from "react-redux";
 import CollectionItem from "../../components/collection-item/collection-item";
+import { selectCollection } from "../../redux/shop/shop.selector";
 import "./collection.scss";
 
-const CollectionPage = ({ match }) => {
-  console.log(match.params.collectionId);
+const CollectionPage = ({ collection }) => {
+  console.log(collection);
 
   return (
     <div className="categcollection-pageory">
@@ -12,4 +14,8 @@ const CollectionPage = ({ match }) => {
   );
 };
 
-export default CollectionPage;
+const mapStateToProps = (state, ownProps) => ({
+  collection: selectCollection(ownProps.match.params.collectionId)(state)
+});
+
+export default connect(mapStateToProps)(CollectionPage);
