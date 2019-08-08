@@ -2,15 +2,25 @@ import React from "react";
 import { connect } from "react-redux";
 import CollectionItem from "../../components/collection-item/collection-item";
 import { selectCollection } from "../../redux/shop/shop.selector";
-import "./collection.scss";
+// import "./collection.scss";
+
+import {
+  CollectionPageContainer,
+  CollectionTitle,
+  CollectionItemsContainer
+} from "./collection.styles";
 
 const CollectionPage = ({ collection }) => {
-  console.log(collection);
-
+  const { title, items } = collection;
   return (
-    <div className="categcollection-pageory">
-      <h2>Collection Page</h2>
-    </div>
+    <CollectionPageContainer>
+      <CollectionTitle>{title}</CollectionTitle>
+      <CollectionItemsContainer>
+        {items.map(item => (
+          <CollectionItem key={item.id} item={item} />
+        ))}
+      </CollectionItemsContainer>
+    </CollectionPageContainer>
   );
 };
 
