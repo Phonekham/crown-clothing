@@ -28,9 +28,9 @@ app.listen(port, error => {
 
 app.post("/payment", (req, res) => {
   const body = {
-    source: req.body.tken.id,
+    source: req.body.token.id,
     amount: req.body.amount,
-    currency: "lak"
+    currency: "usd"
   };
   stripe.charges.create(body, (stripeErr, stripeRes) => {
     if (stripeErr) {
